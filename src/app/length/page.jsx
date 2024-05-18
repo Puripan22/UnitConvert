@@ -1,55 +1,57 @@
-"use client"
+"use client";
 import React, { useState } from "react";
-import "./metric.css"
+import "./metric.css";
 import conversionFactors from "./conversionFactors";
+import prefixes from "./prefixes";
 
 function App() {
-  const [inputs, setInputs] = useState([{ id: 1, value: 0, fromUnit: "meter", toUnit: "kilometer" }]);
+  const [inputs, setInputs] = useState([
+    { id: 1, value: 0, fromUnit: "meter", toUnit: "meter", result: 0, fromPrefix: '', toPrefix: '' }
+  ]);
 
   const handleInputChange = (id, e) => {
     const { name, value } = e.target;
-    const newInputs = inputs.map(input => input.id === id ? { ...input, [name]: value === "" ? 0 : parseFloat(value) } : input);
+    const newInputs = inputs.map(input =>
+      input.id === id ? { ...input, [name]: value === "" ? 0 : parseFloat(value) } : input
+    );
     setInputs(newInputs);
   };
 
-  const handleFromUnitChange = (id, e) => {
-    const { value } = e.target;
-    const newInputs = inputs.map(input => input.id === id ? { ...input, fromUnit: value } : input);
-    setInputs(newInputs);
-  };
-
-  const handleToUnitChange = (id, e) => {
-    const { value } = e.target;
-    const newInputs = inputs.map(input => input.id === id ? { ...input, toUnit: value } : input);
+  const handleUnitChange = (id, e) => {
+    const { name, value } = e.target;
+    const newInputs = inputs.map(input => input.id === id ? { ...input, [name]: value } : input);
     setInputs(newInputs);
   };
 
   const handleConvert = (id) => {
     const input = inputs.find(input => input.id === id);
-    const { value, fromUnit, toUnit } = input;
-    const factor = conversionFactors[fromUnit][toUnit];
-    if (factor !== undefined) {
-      const result = value * factor;
-      const newInputs = inputs.map(input => input.id === id ? { ...input, result } : input);
-      setInputs(newInputs);
-    } else {
-      const newInputs = inputs.map(input => input.id === id ? { ...input, result: "Conversion factor not defined" } : input);
-      setInputs(newInputs);
-    }
+    const { value, fromUnit, toUnit, fromPrefix, toPrefix } = input;
+
+    const fromFactor = prefixes[fromPrefix] || 1;
+    const toFactor = prefixes[toPrefix] || 1;
+    const baseValue = value * fromFactor;
+    const factor = conversionFactors[fromUnit]?.[toUnit];
+
+    const result = factor !== undefined ? (baseValue * factor) / toFactor : "Conversion factor not defined";
+    const newInputs = inputs.map(input => input.id === id ? { ...input, result } : input);
+    setInputs(newInputs);
   };
 
   const handleAddInput = () => {
-    if (inputs.length < 8) {
+    
       const newId = Math.max(...inputs.map(input => input.id)) + 1;
-      setInputs([...inputs, { id: newId, value: 0, fromUnit: "meter", toUnit: "kilometer" }]);
-    }
+      setInputs([
+        ...inputs, 
+        { id: newId, value: 0, fromUnit: "meter", toUnit: "meter", result: 0, fromPrefix: '', toPrefix: '' }
+      ]);
+    
   };
 
   return (
     <div className="App">
       <h1>Length Unit Converter</h1>
-      {inputs.map((input) => (
-        <div key={input.id}>
+      {inputs.map(input => (
+        <div key={input.id} className="conversion-input">
           <input
             type="number"
             name="value"
@@ -57,27 +59,43 @@ function App() {
             onChange={(e) => handleInputChange(input.id, e)}
             placeholder="Enter value"
           />
-          <select name="fromUnit" value={input.fromUnit} onChange={(e) => handleFromUnitChange(input.id, e)}>
-            {Object.keys(conversionFactors).map((unit) => (
+          <select name="fromPrefix" value={input.fromPrefix} onChange={(e) => handleUnitChange(input.id, e)}>
+            {Object.keys(prefixes).map(prefix => (
+              <option key={prefix} value={prefix}>
+                {prefix}
+              </option>
+            ))}
+          </select>
+          <select name="fromUnit" value={input.fromUnit} onChange={(e) => handleUnitChange(input.id, e)}>
+            {Object.keys(conversionFactors).map(unit => (
               <option key={unit} value={unit}>
                 {unit}
               </option>
             ))}
           </select>
-          <select name="toUnit" value={input.toUnit} onChange={(e) => handleToUnitChange(input.id, e)}>
-            {Object.keys(conversionFactors[input.fromUnit]).map((unit) => (
+          <select name="toPrefix" value={input.toPrefix} onChange={(e) => handleUnitChange(input.id, e)}>
+            {Object.keys(prefixes).map(prefix => (
+              <option key={prefix} value={prefix}>
+                {prefix}
+              </option>
+            ))}
+          </select>
+          <select name="toUnit" value={input.toUnit} onChange={(e) => handleUnitChange(input.id, e)}>
+            {Object.keys(conversionFactors[input.fromUnit]).map(unit => (
               <option key={unit} value={unit}>
                 {unit}
               </option>
             ))}
           </select>
           <button onClick={() => handleConvert(input.id)}>Convert</button>
-          <p>
-            {input.value} {input.fromUnit} is equal to {input.result} {input.toUnit}
-          </p>
+          {input.result !== undefined && (
+            <p>
+              {input.value} {input.fromPrefix} {input.fromUnit} is equal to {input.result} {input.toPrefix} {input.toUnit}
+            </p>
+          )}
         </div>
       ))}
-      {inputs.length < 8 && <button onClick={handleAddInput}>Add Input</button>}
+      <button onClick={handleAddInput}>Add Input</button>
     </div>
   );
 }

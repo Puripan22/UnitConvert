@@ -1,10 +1,10 @@
 "use client"
 import React, { useState } from "react";
-import "./metric.css"
-import conversionFactors from "./conversionFactors";
+import "./metric.css";
+import areaConversionFactors from "./areaConversionFactors"; 
 
 function App() {
-  const [inputs, setInputs] = useState([{ id: 1, value: 0, fromUnit: "meter", toUnit: "kilometer" }]);
+  const [inputs, setInputs] = useState([{ id: 1, value: 0, fromUnit: "squareMeter", toUnit: "squareKilometer" }]); 
 
   const handleInputChange = (id, e) => {
     const { name, value } = e.target;
@@ -27,7 +27,7 @@ function App() {
   const handleConvert = (id) => {
     const input = inputs.find(input => input.id === id);
     const { value, fromUnit, toUnit } = input;
-    const factor = conversionFactors[fromUnit][toUnit];
+    const factor = areaConversionFactors[fromUnit][toUnit]; 
     if (factor !== undefined) {
       const result = value * factor;
       const newInputs = inputs.map(input => input.id === id ? { ...input, result } : input);
@@ -39,15 +39,13 @@ function App() {
   };
 
   const handleAddInput = () => {
-    if (inputs.length < 8) {
-      const newId = Math.max(...inputs.map(input => input.id)) + 1;
-      setInputs([...inputs, { id: newId, value: 0, fromUnit: "meter", toUnit: "kilometer" }]);
-    }
+    const newId = Math.max(...inputs.map(input => input.id)) + 1;
+    setInputs([...inputs, { id: newId, value: 0, fromUnit: "squareMeter", toUnit: "squareKilometer" }]); 
   };
 
   return (
     <div className="App">
-      <h1>Area Unit Converter</h1>
+      <h1>Area Unit Converter</h1> 
       {inputs.map((input) => (
         <div key={input.id}>
           <input
@@ -58,14 +56,14 @@ function App() {
             placeholder="Enter value"
           />
           <select name="fromUnit" value={input.fromUnit} onChange={(e) => handleFromUnitChange(input.id, e)}>
-            {Object.keys(conversionFactors).map((unit) => (
+            {Object.keys(areaConversionFactors).map((unit) => ( 
               <option key={unit} value={unit}>
                 {unit}
               </option>
             ))}
           </select>
           <select name="toUnit" value={input.toUnit} onChange={(e) => handleToUnitChange(input.id, e)}>
-            {Object.keys(conversionFactors[input.fromUnit]).map((unit) => (
+          {areaConversionFactors[input.fromUnit] && Object.keys(areaConversionFactors[input.fromUnit]).map((unit) => ( 
               <option key={unit} value={unit}>
                 {unit}
               </option>
@@ -77,7 +75,7 @@ function App() {
           </p>
         </div>
       ))}
-      {inputs.length < 8 && <button onClick={handleAddInput}>Add Input</button>}
+      <button onClick={handleAddInput}>Add Input</button>
     </div>
   );
 }

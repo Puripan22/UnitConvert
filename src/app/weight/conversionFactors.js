@@ -1,5 +1,6 @@
 const weightConversionFactors = {
   kilogram: {
+    kilogram: (kg) => kg * 1,
     gram: (kg) => kg * 1000,
     milligram: (kg) => kg * 1000000,
     metricTon: (kg) => kg / 1000,
@@ -11,6 +12,7 @@ const weightConversionFactors = {
     atomicMassUnit: (kg) => kg * 6.02214076e+26,
   },
   gram: {
+    gram: (g) => g * 1 ,
     kilogram: (g) => g / 1000,
     milligram: (g) => g * 1000,
     metricTon: (g) => g / 1e+6,
@@ -22,6 +24,7 @@ const weightConversionFactors = {
     atomicMassUnit: (g) => g * 6.02214076e+23,
   },
   milligram: {
+    milligram: (mg) => mg * 1,
     kilogram: (mg) => mg / 1e+6,
     gram: (mg) => mg / 1000,
     metricTon: (mg) => mg / 1e+9,
@@ -33,6 +36,7 @@ const weightConversionFactors = {
     atomicMassUnit: (mg) => mg * 6.02214076e+20,
   },
   metricTon: {
+    metricTon: (mt) => mt * 1,
     kilogram: (mt) => mt * 1000,
     gram: (mt) => mt * 1e+6,
     milligram: (mt) => mt * 1e+9,
@@ -44,6 +48,7 @@ const weightConversionFactors = {
     atomicMassUnit: (mt) => mt * 6.02214076e+29,
   },
   longTon: {
+    longTon: (lt) => lt * 1,
     kilogram: (lt) => lt * 1016.0469088,
     gram: (lt) => lt * 1.016e+6,
     milligram: (lt) => lt * 1.016e+9,
@@ -55,6 +60,7 @@ const weightConversionFactors = {
     atomicMassUnit: (lt) => lt * 6.123456e+29,
   },
   shortTon: {
+    shortTon: (st) => st * 1,
     kilogram: (st) => st * 907.18474,
     gram: (st) => st * 907184.74,
     milligram: (st) => st * 9.072e+8,
@@ -66,6 +72,7 @@ const weightConversionFactors = {
     atomicMassUnit: (st) => st * 5.463124e+29,
   },
   pound: {
+    pound: (lb) => lb * 1,
     kilogram: (lb) => lb / 2.2046226218,
     gram: (lb) => lb * 453.59237,
     milligram: (lb) => lb * 453592.37,
@@ -77,6 +84,7 @@ const weightConversionFactors = {
     atomicMassUnit: (lb) => lb * 2.73159523e+26,
   },
   ounce: {
+    ounce: (oz) => oz * 1,
     kilogram: (oz) => oz / 35.27396195,
     gram: (oz) => oz * 28.349523125,
     milligram: (oz) => oz * 28349.523125,
@@ -88,6 +96,7 @@ const weightConversionFactors = {
     atomicMassUnit: (oz) => oz * 1.707246e+25,
   },
   carat: {
+    carat: (ct) => ct * 1,
     kilogram: (ct) => ct / 5000,
     gram: (ct) => ct / 5,
     milligram: (ct) => ct * 200,
@@ -99,6 +108,7 @@ const weightConversionFactors = {
     atomicMassUnit: (ct) => ct * 1.2044285e+23,
   },
   atomicMassUnit: {
+    atomicMassUnit: (amu) => amu * 1,
     kilogram: (amu) => amu / 6.02214076e+26,
     gram: (amu) => amu / 6.02214076e+23,
     milligram: (amu) => amu / 6.02214076e+20,

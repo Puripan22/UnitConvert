@@ -1,5 +1,6 @@
 const timeConversionFactors = {
   second: {
+    second: 1,
     millisecond: 1000,
     microsecond: 1e6,
     nanosecond: 1e9,
@@ -12,30 +13,35 @@ const timeConversionFactors = {
     year: 1 / 3.154e+7,
   },
   millisecond: {
+    millisecond: 1,
     second: 1 / 1000,
     microsecond: 1000,
     nanosecond: 1e6,
     picosecond: 1e9,
   },
   microsecond: {
+    microsecond: 1,
     second: 1 / 1e6,
     millisecond: 1 / 1000,
     nanosecond: 1000,
     picosecond: 1e6,
   },
   nanosecond: {
+    nanosecond: 1,
     second: 1 / 1e9,
     millisecond: 1 / 1e6,
     microsecond: 1 / 1000,
     picosecond: 1000,
   },
   picosecond: {
+    picosecond: 1,
     second: 1 / 1e12,
     millisecond: 1 / 1e9,
     microsecond: 1 / 1e6,
     nanosecond: 1 / 1000,
   },
   minute: {
+    minute: 1,
     second: 60,
     millisecond: 60 * 1e3,
     microsecond: 60 * 1e6,
@@ -48,6 +54,7 @@ const timeConversionFactors = {
     year: 1 / (60 * 24 * 365),
   },
   hour: {
+    hour: 1,
     second: 3600,
     millisecond: 3600 * 1e3,
     microsecond: 3600 * 1e6,
@@ -60,6 +67,7 @@ const timeConversionFactors = {
     year: 1 / (24 * 365),
   },
   day: {
+    day: 1,
     second: 86400,
     millisecond: 86400 * 1e3,
     microsecond: 86400 * 1e6,
@@ -72,6 +80,7 @@ const timeConversionFactors = {
     year: 1 / 365,
   },
   week: {
+    week: 1,
     second: 604800,
     millisecond: 604800 * 1e3,
     microsecond: 604800 * 1e6,
@@ -84,6 +93,7 @@ const timeConversionFactors = {
     year: 1 / 52.143,
   },
   month: {
+    month: 1,
     second: 2.628e+6,
     millisecond: 2.628e+6 * 1e3,
     microsecond: 2.628e+6 * 1e6,
@@ -96,6 +106,7 @@ const timeConversionFactors = {
     year: 1 / 12,
   },
   year: {
+    year: 1,
     second: 3.154e+7,
     millisecond: 3.154e+7 * 1e3,
     microsecond: 3.154e+7 * 1e6,

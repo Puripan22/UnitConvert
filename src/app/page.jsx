@@ -1,12 +1,44 @@
+"use client"
 import Image from "next/image";
 import Link from "next/link";
 import Text from "../components/text.jsx"
-import Text2 from "../components/text2.jsx"
 import Footer from "../components/footer.jsx"
+import { useRef, useEffect } from "react";
 export default function Home() {
+  const textRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            textRef.current.scrollIntoView({ behavior: "smooth" });
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.1
+      }
+    );
+
+    const target = document.querySelector('.backgound-1');
+    if (target) {
+      observer.observe(target);
+    }
+
+    return () => {
+      if (target) {
+        observer.unobserve(target);
+      }
+    };
+  }, []);
+
+
   return (
     <main className="flex h-full w-full flex-col ">
-      <div className="backgound-1 h-full w-full flex items-center justify-center p-8" style={{ backgroundImage: "url('/images/jpg2.jpg')" }}>
+      <div className="backgound-1 h-full w-full flex items-center justify-center p-8" style={{ backgroundImage: "url('/jpg2.jpg')" }}>
         <iframe
           width="1400"
           height="795"
@@ -19,8 +51,9 @@ export default function Home() {
           className=" rounded-xl"
         ></iframe>
       </div>
+      <div ref={textRef}>
       <Text/>
-      
+      </div>
     </main>
   );
 }

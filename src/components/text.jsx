@@ -1,15 +1,31 @@
 import React from "react";
 import Image from "next/image";
-import image6 from "@/image/image6.png";
-import image4 from "@/image/image4.png";
-import image5 from "@/image/image5.png";
-import image7 from "@/image/image7.png";
+import image6 from "@/images/image6.png";
+import image4 from "@/images/image4.png";
+import image5 from "@/images/image5.png";
+import image7 from "@/images/image7.png";
 
 function text() {
   return (
-    <div className="flex h-full w-full items-center justify-center p-8 bg-slate-200">
-      <div className="w-1/5  flex  h-full"></div>
-      <div className="w-1/2  flex  items-center flex-col ">
+    <div className="flex h-full w-full items-center justify-center  ">
+      <video
+          autoPlay
+          muted
+          loop
+          style={{
+            position: "absolute",
+            width: "100%",
+            height: "67.5%",
+            objectFit: "cover",
+            zIndex: "-1",
+          }}
+        >
+          <source src="/todoki.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      <div className="w-1/4  flex  h-full">
+      </div>
+      <div className="w-1/2  flex  items-center flex-col p-4  bg-slate-200">
         <Image src={image4} alt="" />
         <p className="font-bold text-xl pt-4">ระบบเมตริก</p>
 
@@ -76,7 +92,10 @@ function text() {
         </h1>
         <Image src={image7} alt="" height="700" width="700" />
       </div>
-      <div className="w-1/5 flex h-full"></div>
+      <div
+        className="w-1/4 flex h-full"
+        style={{ backgroundImage: "url('/jpg2.jpg')" }}
+      ></div>
     </div>
   );
 }

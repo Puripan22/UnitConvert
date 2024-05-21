@@ -5,9 +5,8 @@ import Categorical_Data, { CalFuntion } from "./conversionFactors";
 
 function App() {
   const [inputs, setInputs] = useState([
-    { id: 1, value: 0, fromUnit: "CubicMeter", toUnit: "CubicMeter" },
+    { id: 1, value: 0, fromUnit: "CubicMeter", toUnit: "CubicMeter", digits: "Select digits", result: 0 },
   ]);
-  const [digits, setDigits] = useState("Select digits");
 
   const handleInputChange = (id, e) => {
     const { name, value } = e.target;
@@ -35,12 +34,18 @@ function App() {
     setInputs(newInputs);
   };
 
+  const handleDigitsChange = (id, e) => {
+    const { value } = e.target;
+    const newInputs = inputs.map((input) =>
+      input.id === id ? { ...input, digits: value } : input
+    );
+    setInputs(newInputs);
+  };
+
   const handleConvert = (id) => {
     const input = inputs.find((input) => input.id === id);
     const { value, fromUnit, toUnit } = input;
-    console.log(fromUnit, toUnit, "1111");
     const factor = CalFuntion(fromUnit, toUnit);
-    console.log(factor);
     if (factor !== undefined) {
       const result = value * factor;
       const newInputs = inputs.map((input) =>
@@ -62,7 +67,7 @@ function App() {
       const newId = Math.max(...inputs.map((input) => input.id)) + 1;
       setInputs([
         ...inputs,
-        { id: newId, value: 0, fromUnit: "meter", toUnit: "kilometer" },
+        { id: newId, value: 0, fromUnit: "CubicMeter", toUnit: "CubicMeter", digits: "Select digits", result: 0 },
       ]);
     }
   };
@@ -70,18 +75,8 @@ function App() {
   const Number = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   return (
-    <div
-      className="App"
-      style={{
-        backgroundImage: "url('/jpg2.jpg')",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
-        width: "100%",
-        height: "90.7vh",
-      }}
-    >
-      <h1 className=" font-bold text-3xl ">Volume Unit Converter</h1>
+    <div className="App bg-slate-200">
+      <h1 className="font-bold text-3xl pt-4">Volume Unit Converter</h1>
       {inputs.map((input) => (
         <div key={input.id}>
           <input
@@ -115,10 +110,10 @@ function App() {
           </select>
           <select
             name="digits"
-            id=""
-            onChange={(e) => setDigits(e.target.value)}
+            value={input.digits}
+            onChange={(e) => handleDigitsChange(input.id, e)}
           >
-            <option value={null}>Select digits</option>
+            <option value="Select digits">Select digits</option>
             {Number.map((num) => (
               <option key={num} value={num}>
                 {num}
@@ -127,7 +122,7 @@ function App() {
           </select>
           <button onClick={() => handleConvert(input.id)}>Convert</button>
           <div>
-            {digits === "Select digits" ? (
+            {input.digits === "Select digits" ? (
               <p>
                 {input.value} {input.fromUnit} is equal to{" "}
                 {input.result !== undefined ? input.result : "N/A"}{" "}
@@ -137,7 +132,7 @@ function App() {
               <p>
                 {input.value} {input.fromUnit} is equal to{" "}
                 {input.result !== undefined
-                  ? input.result.toFixed(parseInt(digits))
+                  ? input.result.toFixed(parseInt(input.digits))
                   : "N/A"}{" "}
                 {input.toUnit}
               </p>

@@ -7,7 +7,7 @@ import image7 from "@/images/image7.png";
 
 function text() {
   return (
-    <div className="flex h-full w-full items-center justify-center bg-slate-200 "> {/*style={{ backgroundImage: "url('/jpg2.jpg')" }}*/}
+    <div className="flex h-full w-full items-center justify-center bg-gray-200 "> {/*style={{ backgroundImage: "url('/jpg2.jpg')" }}*/}
       {/* <video
           autoPlay
           muted
@@ -26,19 +26,19 @@ function text() {
       <div className="w-1/4  flex  h-full">
       </div>
       <div className="w-1/2  flex  items-center flex-col p-4  ">
-        <Image src={image4} alt="" />
+        <Image src={image4} alt="" className="pt-4" />
         <p className="font-bold text-xl pt-4">ระบบเมตริก</p>
 
-        <h1 className=" ">
+        <h1 className=" pt-2">
           หน่วยวัดความยาวในระบบเมตริกที่เราคุ้นเคยกันมักจะใช้กับการวัดขนาด
           หาความยาวของสิ่งต่างๆ รวมไปถึงใช้เป็นหน่วยของระยะทาง ดังนี้ มิลลิเมตร,
           เซนติเมตร, เมตร และกิโลเมตร นอกจากนั้นยังมีเฮกโตเมตร เดคาเมตร
           และเดซิเมตร ที่มักใช้เป็นหน่วยการวัดในเชิงวิทยาศาสตร์
         </h1>
 
-        <p className="font-bold text-xl pt-4">ระบบอิมพีเรียล</p>
+        <p className="font-bold text-xl pt-8">ระบบอิมพีเรียล</p>
 
-        <h1 className="">
+        <h1 className="pt-2">
           ระบบการวัดอเมริกัน-อังกฤษ หรือเรียกอีกอย่างว่าระบบอิมพีเรียล
           นิยมใช้กันในประเทศอังกฤษและอเมริกา
           แต่เนื่องจากในอดีตอังกฤษเป็นประเทศที่เป็นจักรวรรดิ
@@ -48,12 +48,12 @@ function text() {
           (yard) และไมล์ (mile)
         </h1>
 
-        <p className="font-bold text-xl pt-4">
+        <p className="font-bold text-xl pt-8">
           ระบบหน่วยระหว่างชาติ หรือ ระบบเอสไอ (SI : The International System of
           Units)
         </p>
 
-        <h1 className="">
+        <h1 className="pt-2">
           เราจะพบว่าแต่ละประเทศมีระบบหน่วยการวัดไม่เหมือนกัน
           ซึ่งอาจทำให้เกิดปัญหาในการแปลงหน่วยต่างๆ
           เพื่อให้การใช้หน่วยเป็นมาตรฐานเดียวกันทั่วโลกโดยเฉพาะในวงการวิทยาศาสตร์
@@ -72,25 +72,25 @@ function text() {
           (derived units) ดังรายละเอียดต่อไปนี้
         </h1>
 
-        <p className="font-bold text-xl pt-4">หน่วยฐาน (base units)</p>
-        <Image src={image5} alt="" />
+        <p className="font-bold text-xl pt-8">หน่วยฐาน (base units)</p>
+        <Image src={image5} alt="" className="pt-2" />
 
-        <p className="font-bold text-xl pt-4">หน่วยอนุพัทธ์ (derived units)</p>
+        <p className="font-bold text-xl pt-8">หน่วยอนุพัทธ์ (derived units)</p>
         <h1>
           หน่วยอนุพัทธ์เป็นหน่วยที่ประกอบด้วยหน่วยฐานที่ได้จากการคำนวณทางฟิสิกส์
           เช่น การคูณ (´) หรือ การหาร(¸) ในขณะที่การบวก (+) หรือ การลบ (-)
           หน่วยทางฟิสิกส์นั้นจะยังคงเป็นหน่วยเดิม
         </h1>
-        <Image src={image6} alt="" />
+        <Image src={image6} alt="" className="pt-2"/>
 
-        <p className="font-bold text-xl pt-4">คำนำหน้าหน่วย (prefix)</p>
-        <h1 className="">
+        <p className="font-bold text-xl pt-8">คำนำหน้าหน่วย (prefix)</p>
+        <h1 className="pt-2">
           นอกจากนี้ระบบเอสไอได้กำหนดคำนำหน้าหน่วย (prefix)
           เพื่อทำให้หน่วยที่ใช้เล็กลง หรือ ใหญ่ขึ้น
           มีผลให้เขียนปริมาณที่มีค่ามากๆ หรือ ค่าน้อยๆ ได้สะดวกและรวดเร็ว
           โดยคำนำหน้าที่ถูกใช้บ่อย
         </h1>
-        <Image src={image7} alt="" height="700" width="700" />
+        <Image src={image7} alt="" height="700" width="700" className="pt-2"/>
       </div>
       <div
         className="w-1/4 flex h-full"

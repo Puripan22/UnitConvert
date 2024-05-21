@@ -5,9 +5,15 @@ import weightConversionFactors from "./conversionFactors";
 
 function App() {
   const [inputs, setInputs] = useState([
-    { id: 1, value: 0, fromUnit: "kilogram", toUnit: "kilogram", result: 0 },
+    {
+      id: 1,
+      value: 0,
+      fromUnit: "gram",
+      toUnit: "kilogram",
+      result: 0,
+      digits: "Select digits",
+    },
   ]);
-  const [digits, setDigits] = useState("Select digits");
 
   const handleInputChange = (id, e) => {
     const { value } = e.target;
@@ -32,6 +38,15 @@ function App() {
     setInputs((prevInputs) =>
       prevInputs.map((input) =>
         input.id === id ? { ...input, toUnit: value } : input
+      )
+    );
+  };
+
+  const handleDigitsChange = (id, e) => {
+    const { value } = e.target;
+    setInputs((prevInputs) =>
+      prevInputs.map((input) =>
+        input.id === id ? { ...input, digits: value } : input
       )
     );
   };
@@ -62,7 +77,14 @@ function App() {
       const newId = inputs.length + 1;
       setInputs((prevInputs) => [
         ...prevInputs,
-        { id: newId, value: 0, fromUnit: "gram", toUnit: "", result: 0 },
+        {
+          id: newId,
+          value: 0,
+          fromUnit: "gram",
+          toUnit: "kilogram",
+          result: 0,
+          digits: "Select digits",
+        },
       ]);
     }
   };
@@ -70,18 +92,8 @@ function App() {
   const Number = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   return (
-    <div
-      className="App"
-      style={{
-        backgroundImage: "url('/jpg2.jpg')",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
-        width: "100%",
-        height: "90.7vh",
-      }}
-    >
-      <h1 className=" font-bold text-3xl ">Weight Unit Converter</h1>
+    <div className="App bg-slate-200">
+      <h1 className="font-bold text-3xl pt-4">Weight Unit Converter</h1>
       {inputs.map((input) => (
         <div key={input.id} className="conversion-input">
           <input
@@ -118,10 +130,10 @@ function App() {
           </select>
           <select
             name="digits"
-            id=""
-            onChange={(e) => setDigits(e.target.value)}
+            value={input.digits}
+            onChange={(e) => handleDigitsChange(input.id, e)}
           >
-            <option value={null}>Select digits</option>
+            <option value="Select digits">Select digits</option>
             {Number.map((num) => (
               <option key={num} value={num}>
                 {num}
@@ -130,7 +142,7 @@ function App() {
           </select>
           <button onClick={() => handleConvert(input.id)}>Convert</button>
           <div>
-            {digits === "Select digits" ? (
+            {input.digits === "Select digits" ? (
               <p>
                 {input.value} {input.fromUnit} is equal to{" "}
                 {input.result !== undefined ? input.result : "N/A"}{" "}
@@ -140,7 +152,7 @@ function App() {
               <p>
                 {input.value} {input.fromUnit} is equal to{" "}
                 {input.result !== undefined
-                  ? input.result.toFixed(parseInt(digits))
+                  ? input.result.toFixed(parseInt(input.digits))
                   : "N/A"}{" "}
                 {input.toUnit}
               </p>

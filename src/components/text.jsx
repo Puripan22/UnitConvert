@@ -7,8 +7,8 @@ import image7 from "@/images/image7.png";
 
 function text() {
   return (
-    <div className="flex h-full w-full items-center justify-center  ">
-      <video
+    <div className="flex h-full w-full items-center justify-center bg-slate-200 "> {/*style={{ backgroundImage: "url('/jpg2.jpg')" }}*/}
+      {/* <video
           autoPlay
           muted
           loop
@@ -22,10 +22,10 @@ function text() {
         >
           <source src="/todoki.mp4" type="video/mp4" />
           Your browser does not support the video tag.
-        </video>
+        </video> */}
       <div className="w-1/4  flex  h-full">
       </div>
-      <div className="w-1/2  flex  items-center flex-col p-4  bg-slate-200">
+      <div className="w-1/2  flex  items-center flex-col p-4  ">
         <Image src={image4} alt="" />
         <p className="font-bold text-xl pt-4">ระบบเมตริก</p>
 

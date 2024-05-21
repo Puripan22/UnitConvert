@@ -38,7 +38,14 @@ export default function Home() {
 
   return (
     <main className="flex h-full w-full flex-col ">
-      <div className="backgound-1 h-full w-full flex items-center justify-center p-8" style={{ backgroundImage: "url('/jpg2.jpg')" }}>
+      <div className="backgound-1 h-full w-full flex items-center justify-center p-8" style={{
+        backgroundImage: "url('/jpg2.jpg')",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        width: "100%",
+        height: "90.7vh",
+      }}>
         <iframe
           width="1400"
           height="795"

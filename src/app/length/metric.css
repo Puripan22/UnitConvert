@@ -37,17 +37,17 @@ p {
 }
 
 button:hover {
-  background-color: rgb(223, 156, 156);
-  box-shadow: 0 0 10px rgba(224, 143, 143, 0.8);
+  background-color: rgb(36, 197, 14);
+  box-shadow: 0 0 10px rgba(116, 187, 1, 0.8);
 }
 
 input:hover{
-  background-color: rgb(223, 156, 156);
-  box-shadow: 0 0 10px rgba(224, 143, 143, 0.8);
+  background-color: rgb(36, 197, 14);
+  box-shadow: 0 0 10px rgba(116, 187, 1, 0.8);
 }
 
 select:hover{
-  background-color: rgb(223, 156, 156);
-  box-shadow: 0 0 10px rgba(224, 143, 143, 0.8);
+  background-color: rgb(36, 197, 14);
+  box-shadow: 0 0 10px rgba(116, 187, 1, 0.8);
 }
 

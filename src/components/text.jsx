@@ -8,7 +8,7 @@ import image8 from "@/images/clipart.png"
 
 function text() {
   return (
-    <div className="flex h-full w-full items-center justify-center bg-gradient-to-b from-gray-200 to-slate-100"> {/*style={{ backgroundImage: "url('/jpg2.jpg')" }}*/}
+    <div className="flex h-full w-full items-center justify-center  "> {/*style={{ backgroundImage: "url('/jpg2.jpg')" }}*/}
       
       {/* <video
           autoPlay
@@ -25,7 +25,8 @@ function text() {
           <source src="/todoki.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video> */}
-      <div className="w-1/4  flex  h-full">
+      
+      <div className="w-1/4  flex  h-full ">
       </div>
       <div className="w-1/2  flex  items-center flex-col p-4  ">
         <Image src={image4} alt="" className="pt-4" />

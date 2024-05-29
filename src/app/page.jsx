@@ -9,7 +9,7 @@ export default function Home() {
 
   return (
     <main className="flex h-full w-full flex-col ">
-      <div className="backgound-1 h-full w-full flex items-center justify-center p-8  bg-gradient-to-b from-gray-300 to-slate-200" >
+      <div className="backgound-1 h-full w-full flex items-center justify-center p-8 bg-slate-100" >
         <iframe
           width="1400"
           height="795"

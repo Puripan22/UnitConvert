@@ -92,7 +92,7 @@ function App() {
   const Number = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   return (
-    <div className="App bg-slate-200">
+    <div className="App bg-gradient-to-b from-gray-200 to-slate-100">
       <h1 className="font-bold text-3xl pt-4">Weight Unit Converter</h1>
       {inputs.map((input) => (
         <div key={input.id} className="conversion-input">
